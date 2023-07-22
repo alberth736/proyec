@@ -1,0 +1,52 @@
+<mat-toolbar color="accent">
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/users">Usuarios</button>
+    <button mat-menu-item routerLink="/blogs">Blogs</button>
+    <button mat-menu-item routerLink="/pokemones">Pokemones</button>
+    <button mat-menu-item routerLink="/login">Cerrar sesión</button>
+  </mat-menu>
+  <span>Blog</span>
+  <span class="example-spacer"></span>
+  <button
+    mat-icon-button
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+  >
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with share icon"
+  >
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>
+<h1>Pokemones principales</h1>
+
+<mat-grid-list cols="5" rowHeight="350px" gutterSize="16px">
+  <mat-grid-tile
+    *ngFor="
+      let pokemon of pokemons.slice(
+        pageIndex * pageSize,
+        (pageIndex + 1) * pageSize
+      )
+    "
+  >
+    <mat-card class="example-card">
+      <img mat-card-image [src]="pokemon.image" alt="{{ pokemon.name }}" />
+      <mat-card-content>
+        <p>{{ pokemon.name }}</p>
+        <p class="description">{{ pokemon.description }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
